@@ -1,9 +1,5 @@
 # Trionetix-Solutions
 
-📌 Desafio proposto
-
-O projeto consiste na criação de uma pequena rede corporativa com matriz e filial para atender às necessidades de TI de uma empresa de pequeno porte, incluindo servidor AD e banco de dados, priorizando desempenho, organização, segurança e escalabilidade.
-
 📌 Conclusão do Projeto
 
 Ao finalizar este projeto, pude comprovar na prática a importância de uma infraestrutura de rede bem planejada, organizada e segura. A criação da rede corporativa conectando a matriz e a filial, utilizando VLANs estruturadas, autenticação centralizada via Active Directory e comunicação estável através do túnel IPsec, me permitiu desenvolver uma solução completa e funcional, capaz de atender as necessidades reais de um ambiente corporativo.
