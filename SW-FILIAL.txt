@@ -1,0 +1,68 @@
+enable
+configure terminal
+hostname SW-FILIAL
+enable algorithm-type sha256 secret "********"
+line console 0
+password "********"
+login
+exit
+banner motd "
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	+ 								    +
+	+          ACESSO PERMITIDO SOMENTE A PESSOAS AUTORIZADAS           +
+	+         PESSOAS NAO AUTORIZADAS DESCONECTAR IMEDIATAMENTE 	    +
+	+       TODAS AS CONEXOES ESTAO SENDO MONITORADAS E AUDITADAS 	    +
+	+ 								    +
+	+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ "
+
+! --- Criação das VLANs ---
+vlan 5
+name VLAN_COLABORADORES
+vlan 8
+name VLAN_EQUIPE_TI
+vlan 10
+name BANCO_DE_DADOS
+vlan 999
+name VLAN_ISOLADA
+
+! --- Porta Trunk (Uplink para o FortiGate) ---
+interface Gi1/0/1
+description UPLINK-FORTIGATE
+switchport mode trunk
+switchport trunk allowed vlan 5,8,10
+switchport trunk native vlan 1
+spanning-tree portfast trunk
+
+! --- Colaboradores (VLAN 5) ---
+interface range Gi1/0/3 - 12
+description COLABORADORES
+switchport mode access
+switchport access vlan 5
+spanning-tree portfast
+
+! --- TI (VLAN 8) ---
+interface range Gi1/0/13 - 16
+description EQUIPE_TI
+switchport mode access
+switchport access vlan 8
+spanning-tree portfast
+
+! --- BDD (VLAN 10) ---
+interface Gi1/0/2
+description Banco_de_Dados
+switchport mode access
+switchport access vlan 10
+spanning-tree portfast
+
+! --- Desabilitar portas não utilizadas ---
+interface range Gi1/0/17 - 24, Te1/0/1 - 2
+description PORTAS_DESABILITADAS
+shutdown
+
+! --- Colocar VLAN 999 para segurança nas portas desligadas ---
+interface range Gi1/0/17 - 24, Te1/0/1 - 2
+switchport mode access
+switchport access vlan 999
+
+end
+write memory
