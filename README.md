@@ -1,4 +1,4 @@
-# 📌 Conclusão.
+# 📌 Conclusão
 
 Ao concluir este projeto, percebo o quanto ele foi essencial para ampliar minha visão sobre infraestrutura de redes e segurança da informação. Desenvolver uma solução completa envolvendo matriz e filial, com Active Directory, banco de dados, FortiGate e monitoramento, me deu a oportunidade de colocar em prática conhecimentos que antes estavam apenas na teoria.
 
